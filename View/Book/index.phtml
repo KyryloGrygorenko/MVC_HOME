@@ -1,3 +1,14 @@
 <h1>Books</h1>
 
-this is list of books
+<?php
+//echo '<pre>';
+//var_dump($args);
+//echo '<pre>';
+ ?>
+<hr>
+author: <?=$author?>
+<br>
+this is list of books: <br>
+<?php foreach ($books as $book):?>
+    <?=$book?> <br>
+<?php endforeach ?>
