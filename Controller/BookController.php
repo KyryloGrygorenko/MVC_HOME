@@ -2,12 +2,15 @@
 namespace Controller;
 
 use Library\Controller;
+use Model\BookModel;
+
 class BookController extends Controller {
     public function indexAction($route)
     {
-        //DB connect,model
+        $model = new BookModel();
+        $books = $model->findAll();
         $author= 'King';
-        $books= ['book1','book2','book3'];
+
         $data = [
             'author'=>$author,
             'books'=>$books
