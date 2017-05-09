@@ -34,7 +34,7 @@ if(!method_exists($controller, $action)) {
     throw new Exception("{$action} is not found");
 }
 
-$content= $controller->$action($route);
+$content= $controller->$action($route,$request);
 
 echo '</br>';
 require VIEW_DIR . 'layout.phtml';
