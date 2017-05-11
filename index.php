@@ -6,6 +6,10 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', __DIR__ . DS);
 define('VIEW_DIR', ROOT . 'View' . DS);
 
+//echo ROOT; //C:\xampp\htdocs\OOP\MVC\
+//echo VIEW_DIR; //C:\xampp\htdocs\OOP\MVC\View\
+
+
 spl_autoload_register(function($classname){
 
     $file= ROOT.  str_replace('\\', DS, "{$classname}.php");
@@ -38,14 +42,6 @@ $content= $controller->$action($route,$request);
 
 echo '</br>';
 require VIEW_DIR . 'layout.phtml';
-
-
-
-
-
-
-
-
 
 
 

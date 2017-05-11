@@ -18,7 +18,7 @@ class  FeedbackForm
 
     public function isValid ()
     {
-        //TODO : create validation TRIM
+            //return trim($this->author) != '' && trim($this->email) != '' && trim( $this->message) != '';
         return true;
     }
 }

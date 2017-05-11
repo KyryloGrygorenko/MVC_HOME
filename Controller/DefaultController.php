@@ -3,6 +3,8 @@
 namespace Controller;
 use Library\Controller;
 use Library\Request;
+use Library\Session;
+use Library\Router;
 use Model\Form\FeedbackForm;
 use Model\FeedbackModel;
 
@@ -24,7 +26,12 @@ class DefaultController extends Controller
                     'email' => $form->email,
                     'message' => $form->message,
                 ]);
+
+                Session::setFlash('Feedback sent');
+                //Router::redirect ('/index.php?route=default/feedback');
+                Router::redirect ('http://localhost/oop/MVC/index.php?route=default/feedback');
             }
+            Session::setFlash('Fill the fields properly');
         }
 
         return $this->render('feedback.phtml',$route);
