@@ -18,12 +18,12 @@ class BookController extends Controller {
 
         return $this->render('index.phtml',$route, $data);
     }
-    public function showAction()
+    public function showAction( )
     {
         return 'showAction';
     }
 
-    public function editAction()
+    public function editAction( )
     {
 
     }

@@ -20,6 +20,8 @@ spl_autoload_register(function($classname){
     require_once $file;
 });
 
+\library\Session::start();
+
 $request = new \Library\Request();
 $route = $request->get('route', 'default/index');
 

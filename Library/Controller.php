@@ -13,7 +13,7 @@ abstract class Controller
         self::$dir = ucfirst($route[0]);
         self::$file = VIEW_DIR . self::$dir . DS . $view;
         if (!file_exists(self::$file)) {
-            throw new \Exception("self::$file  not found !!");
+            throw new \Exception(" self::$file  not found !!");
         }
 
         ob_start();
