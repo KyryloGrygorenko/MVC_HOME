@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteRule /contact-us index.php
+RewriteRule (.*) webroot/$1 [L,QSA]
