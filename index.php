@@ -1,5 +1,4 @@
 <?php
-//NEW branch created
 error_reporting(E_ALL);
 
 define('DS', DIRECTORY_SEPARATOR);
@@ -22,6 +21,9 @@ spl_autoload_register(function($classname){
 
 \library\Session::start();
 
+$container = new \Library\Container();
+$container->set('router',new Library\Router());
+
 $request = new \Library\Request();
 $route = $request->get('route', 'default/index');
 
@@ -34,7 +36,7 @@ if (count($route)<2){
 $controller = 'Controller\\' . ucfirst($route[0] . 'Controller');
 $action = $route[1] . 'Action';
 
-$controller = new $controller;
+$controller = (new $controller())->setContainer($container);//стало так
 
 if(!method_exists($controller, $action)) {
     throw new Exception("{$action} is not found");

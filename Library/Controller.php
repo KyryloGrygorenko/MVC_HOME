@@ -3,7 +3,20 @@ namespace Library;
 
 abstract class Controller
 {
-    // todo: make as public static function
+    protected $container;
+
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
+
+        return $this;
+    }
+    public function get ($key)
+    {
+        return $this->container->get($key);
+    }
+
+    // todo: make as public static function // DONE
     public static $dir;
     public static $file;
 
