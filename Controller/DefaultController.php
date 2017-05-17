@@ -6,7 +6,7 @@ use Library\Request;
 use Library\Session;
 use Library\Router;
 use Model\Form\FeedbackForm;
-use Model\FeedbackModel;
+use Model\FeedbackRepository;
 
 class DefaultController extends Controller
 {
@@ -19,11 +19,9 @@ class DefaultController extends Controller
     {
         $form= new FeedbackForm($request);
         if ($request->isPost()){
-            var_dump($form->isValid());
             if ($form->isValid()) {
-                echo 'tyt';
-                $model=new FeedbackModel;
-                $model->save([
+                $repository=$this->get('repository')->getRepository('Feedback');
+                $repository->save([
                     'author' => $form->author,
                     'email' => $form->email,
                     'message' => $form->message,

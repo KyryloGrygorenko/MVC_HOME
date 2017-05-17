@@ -20,12 +20,18 @@ spl_autoload_register(function($classname){
 });
 
 \library\Session::start();
+$request = new \Library\Request();
+$route = $request->get('route', 'default/index');
+
+$pdo=new \PDO('mysql: host=localhost; dbname=mvc', 'root', '');
+$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 $container = new \Library\Container();
 $container->set('router',new Library\Router());
+$container->set('db_connection',$pdo);
+$container->set('repository',(new Library\RepositoryManager())->setPdo($pdo));
 
-$request = new \Library\Request();
-$route = $request->get('route', 'default/index');
+
 
 $route =explode('/',$route);
 if (count($route)<2){
@@ -36,17 +42,12 @@ if (count($route)<2){
 $controller = 'Controller\\' . ucfirst($route[0] . 'Controller');
 $action = $route[1] . 'Action';
 
-$controller = (new $controller())->setContainer($container);//стало так
+$controller = (new $controller())->setContainer($container);
 
 if(!method_exists($controller, $action)) {
     throw new Exception("{$action} is not found");
 }
 
-$content= $controller->$action($route,$request);
-
-echo '</br>';
-require VIEW_DIR . 'layout.phtml';
-
-
+echo $controller->$action($route,$request);
 
 

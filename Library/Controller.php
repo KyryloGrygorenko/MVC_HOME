@@ -19,6 +19,7 @@ abstract class Controller
     // todo: make as public static function // DONE
     public static $dir;
     public static $file;
+    public static $content;
 
     public static function render($view, $route, array $args= [])
     {
@@ -31,6 +32,10 @@ abstract class Controller
 
         ob_start();
         require self::$file;
+        $content= ob_get_clean();
+
+        ob_start();
+        require VIEW_DIR . 'layout.phtml';
         return ob_get_clean();
     }
 

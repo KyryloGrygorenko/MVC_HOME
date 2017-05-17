@@ -2,12 +2,12 @@
 namespace Controller;
 
 use Library\Controller;
-use Model\BookModel;
+use Model\BookRepository;
 
 class BookController extends Controller {
     public function indexAction($route)
     {
-        $model = new BookModel();
+        $model = $this->get('repository')->getRepository('Book');
         $books = $model->findAll();
         $author= 'King';
 
@@ -20,7 +20,7 @@ class BookController extends Controller {
     }
     public function showAction( )
     {
-        return 'showAction';
+        return 'hello';
     }
 
     public function editAction( )
